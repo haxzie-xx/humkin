@@ -1,21 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MyAwesomeComponent from './MyAwesomeComponent';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+      username: '',
+      password : ''
+    }
+  }
+
+  handleClickEvent(event){
+    var apiBaseUrl = "http://localhost:4000/api/";
+    var seld = this;
+    var payload = {
+      username : this.state.username,
+      password : this.state.password
+    }
+     
+  }
+  
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider >
+        <AppBar title="HumKin" zDepth='1'/>
+        <TextField
+          hintText="Enter your Username"
+          floatingLabelText="Username"
+          onChange = {(event, newValue) => this.setState({username:newValue})} />
+        <br/>
+        <TextField 
+          hintText= "Password"
+          floatingLabelText="Password"
+          onChange = {(event, newValue) => this.setState({password:newValue})} />
+        <br/>
+        <RaisedButton
+          label="submit"
+          primary={true}
+          style={style}
+          onClick={ (event) => this.handleClickEvent(event)}/>
+            
+      </MuiThemeProvider>
     );
   }
+
 }
+
+const style = {
+  margin : 15
+};
 
 export default App;
