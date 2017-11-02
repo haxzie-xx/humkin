@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button} from 'react-materialize'
+import {Button, Input} from 'react-materialize'
 
 class DonationForm extends Component{
     render(){
@@ -31,22 +31,20 @@ class DonationForm extends Component{
                     <label for="last_donation">Last Donation</label>
                 </div>
                 <div className="input-field col s12 m6 l6">
-                        <select>
+                        <Input s={12} type='select' label='Blood Type'>
                             <option value="" disabled selected>Blood Type</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
-                        </select>
-                        <label>Blood Type</label>
+                        </Input>
                 </div>
                 <div className="input-field col s12 m6 l6">
-                        <select>
+                        <Input s={12} type='select' label='City'>
                             <option value="" disabled selected>Choose Location</option>
                             <option value="1">Option 1</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
-                        </select>
-                        <label>City</label>
+                        </Input>
                 </div>
                 
                 <div className="input-field col s12 m6 l6">
@@ -64,7 +62,7 @@ class DonationForm extends Component{
                 
             </div>
             <div className="row m0 pad10 center">
-                 <Button className="m10 waves-effect waves-light red accent-2">Register</Button>
+                <Button className="m10 waves-effect waves-light red accent-2">Register</Button>
             </div>
         </div>
         )

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Button} from 'react-materialize'
 
 const  style = {
   margin: "30px auto 0px auto"
@@ -35,7 +36,7 @@ class Login extends Component{
                             <a href="/"><span className="red-text text-accent-2  m10top">Forgot passowrd?</span></a>
                     </div>
                     <div className="m20top col s6 m6 right-align pad0">
-                            <button className="btn waves-effect waves-light red accent-2" type="submit" name="action">SignIn</button>
+                            <Button className="btn waves-effect waves-light red accent-2" node="a" href="#/dashboard">SignIn</Button>
                     </div>
 
                     <div className="col s12 pad20 center valign-wrapper">

@@ -20,7 +20,7 @@ import Camps from './Camps'
       case 0:
         return <Camps/>
       case 1: 
-        return <Donate/>
+        return <BloodBanks/>
       case 2:
         return <Request/>
       case 3:
@@ -53,10 +53,7 @@ import Camps from './Camps'
                 <div className="nav-content">
                   <Tabs className="tabs tabs-transparent m0" onChange={this.handleChange}>
                     <Tab title="Camps"></Tab>
-                    <Tab title="Donate"></Tab>
-                    <Tab title="Request"></Tab>
                     <Tab title="Blood Banks"></Tab>
-                    <Tab title="Hospitals"></Tab>
                   </Tabs>
                 </div>
               </nav>
