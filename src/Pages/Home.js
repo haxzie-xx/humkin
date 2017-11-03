@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 import {Tabs, Tab} from 'react-materialize'
-import Donate from './Donate'
-import Request from './Request'
 import BloodBanks from './BloodBanks'
-import Hospitals from './Hospitals'
 import Camps from './Camps'
 
  class Home extends Component{
@@ -21,14 +18,8 @@ import Camps from './Camps'
         return <Camps/>
       case 1: 
         return <BloodBanks/>
-      case 2:
-        return <Request/>
-      case 3:
-        return <BloodBanks />
-      case 4:
-        return <Hospitals />
       default:
-        return <h1> hello </h1>
+        return <h1> SomeThing Went Wrong! </h1>
     }
   }
 

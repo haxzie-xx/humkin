@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Row, Input, Icon} from 'react-materialize'
+import { Row, Input, Icon} from 'react-materialize'
 import BBSearchItem from '../components/BBSearchItem'
 
 class BloodBank extends Component{
@@ -13,7 +13,7 @@ class BloodBank extends Component{
                 <div className="grad_top_card card-2">
                     <div className="basic_card pad20">
                     <Row className="valign-wrapper">
-                        <Input s={4} label="Search" validate label='Search BloodBank'><Icon>search</Icon></Input>
+                        <Input s={4} validate label='Search BloodBank'><Icon>search</Icon></Input>
                         <Input s={4} type='select' label="Sort By Location" defaultValue='1'>
                             <option value='1'>All</option>
                             <option value='2'>Mangalore</option>

@@ -24,4 +24,3 @@ npm run build
 ```
 
 ## Server
-Find the repo of backend and server here - [HumKin-Server](https://github.com/haxzie/humkin-server)
