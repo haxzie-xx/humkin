@@ -5,7 +5,7 @@ class BBSearchItem extends Component{
 
     render(){
         return(
-            <div className="basic_card pad20 card-2 m20top">
+            <div>
                 <Row className="valign-wrapper">
                     <Col s={12} m={5} l={5} >
                         <p className="_title">{ this.props.name }</p>
@@ -26,6 +26,7 @@ class BBSearchItem extends Component{
                         <Button className="waves-effect waves-light red accent-2">view details</Button>
                     </Col>
                 </Row>
+                <div className="divider m20top"/>
             </div>
         )
     }

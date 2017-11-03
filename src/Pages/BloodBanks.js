@@ -28,10 +28,12 @@ class BloodBank extends Component{
                     </div>
                     
                 </div>
+                <div className="basic_card pad20 card-2 m20top">
                 <BBSearchItem name="BloodBank Name" location="Karavali stadium, Mangalore " />
                 <BBSearchItem name="BloodBank Name" location="Karavali stadium, Mangalore " />
                 <BBSearchItem name="BloodBank Name" location="Karavali stadium, Mangalore " />
                 <BBSearchItem name="BloodBank Name" location="Karavali stadium, Mangalore " />
+                </div>
                 
             </div>
         </div>
