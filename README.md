@@ -1,5 +1,5 @@
 # HumKin
-React.js based front-end for open Blood Bank portal and BloodBank Managemnet System
+React.js based front-end for open Blood Bank portal and Blood Bank Managemnet System
 
 Features:
 * Web Interface for users
@@ -22,3 +22,6 @@ for production build
 ```bash
 npm run build
 ```
+
+## Server
+Find the repo of backend and server here - [HumKin-Server](https://github.com/haxzie/humkin-server)
