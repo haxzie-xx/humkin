@@ -38,7 +38,7 @@ import Camps from './Camps'
                 <div className="nav-wrapper fucia">
                   <a href="" className="m20left main_logo">HumKin</a>
                   <ul id="nav-mobile" className="right">
-                    <li><a href="#/login">Login</a></li>
+                    <li><a href="/login">Login</a></li>
                   </ul>
                 </div>
                 <div className="nav-content">

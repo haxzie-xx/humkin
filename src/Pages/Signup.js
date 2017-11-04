@@ -9,7 +9,7 @@ class Signup extends Component{
             <div className="navbar-fixed">
             <nav className="fucia">
                 <div className="nav-wrapper fucia ">
-                    <a href="#/login" className="brand-logo left"><i className="material-icons m20left">arrow_back</i>&nbsp;<span className="flow-text">Sign Up</span></a>
+                    <a href="/login" className="brand-logo left"><i className="material-icons m20left">arrow_back</i>&nbsp;<span className="flow-text">Sign Up</span></a>
                 </div>
             </nav>
         </div>

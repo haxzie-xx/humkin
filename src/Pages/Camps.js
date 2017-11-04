@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {Button,Row} from 'react-materialize';
+import {Row} from 'react-materialize';
 import CampCard from '../components/CampCard'
 
-const style={
-    margin : '0px'
-}
 class Camps extends Component{
     render(){
         return(
