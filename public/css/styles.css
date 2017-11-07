@@ -45,6 +45,7 @@
     border-radius: 3px;
   }
 
+
   .grad_top_card {
     position: relative;
     background: #ff9966;  /* fallback for old browsers */
@@ -198,6 +199,9 @@
   .m20bottom{
     margin-bottom: 20px;
   }
+  .m10bottom{
+    margin-bottom: 10px;
+  }
   .m10top{
     margin-top: 10px;
   }
@@ -211,8 +215,18 @@
   .m30left{
     margin-left: 30px;
   }
+  .m20right{
+    margin-right: 20px;
+  }
+  .m10right{
+    margin-right: 10px;
+  }
   .m0{
     margin: 0;
+  }
+
+  .m0top{
+    margin-top: 0px;
   }
   .m0b{
     margin-bottom: 0;
@@ -229,6 +243,10 @@
     padding: 0px;
   }
 
+  .pad5{
+    padding: 5px;
+  }
+
   .pad10{
     padding: 10px;
   }
@@ -238,5 +256,10 @@
 
   .full-height{
     height: 100vh;
+  }
+
+  .fixed-nav{
+    position: fixed;
+    overflow: x;
   }
   

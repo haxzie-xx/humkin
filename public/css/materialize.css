@@ -3023,9 +3023,7 @@ td, th {
 }
 
 .collection {
-  margin: 0.5rem 0 1rem 0;
-  border: 1px solid #e0e0e0;
-  border-radius: 2px;
+  margin: 0rem 0 0rem 0;
   overflow: hidden;
   position: relative;
 }
@@ -3033,9 +3031,10 @@ td, th {
 .collection .collection-item {
   background-color: #fff;
   line-height: 1.5rem;
-  padding: 10px 20px;
+  padding: 20px 20px;
   margin: 0;
-  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+  font-weight: 200;
 }
 
 .collection .collection-item.avatar {
@@ -3082,8 +3081,9 @@ td, th {
 }
 
 .collection .collection-item.active {
-  background-color: #26a69a;
-  color: #eafaf9;
+  background-color: #fff;
+  color: #f85656;
+  font-weight: bold;
 }
 
 .collection .collection-item.active .secondary-content {
@@ -3094,7 +3094,7 @@ td, th {
   display: block;
   -webkit-transition: .25s;
   transition: .25s;
-  color: #26a69a;
+  color: #3d3d3d;
 }
 
 .collection a.collection-item:not(.active):hover {
@@ -4700,7 +4700,7 @@ small {
           transform: scale(0);
   -webkit-transition: -webkit-transform .2s !important;
   transition: -webkit-transform .2s !important;
-  transition: transform .2s !important;
+  transition: tansform .2s !important;
   transition: transform .2s, -webkit-transform .2s !important;
 }
 

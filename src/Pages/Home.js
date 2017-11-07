@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Tabs, Tab} from 'react-materialize'
 import BloodBanks from './BloodBanks'
 import Camps from './Camps'
+import {Link} from 'react-router'
 
  class Home extends Component{
 
@@ -38,7 +39,7 @@ import Camps from './Camps'
                 <div className="nav-wrapper fucia">
                   <a href="" className="m20left main_logo">HumKin</a>
                   <ul id="nav-mobile" className="right">
-                    <li><a href="/login">Login</a></li>
+                    <li><Link to="/login">Login</Link></li>
                   </ul>
                 </div>
                 <div className="nav-content">

@@ -6,12 +6,8 @@ import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import Dashboard from './Pages/Dashboard'
 import registerServiceWorker from './registerServiceWorker'
-import {browserHistory} from 'react-router'
-// eslint-disable-next-line
-import { Router, Route, IndexRoute, useRouterHistory } from 'react-router'
-// import { createHashHistory } from 'history';
+import { Router, Route, browserHistory } from 'react-router'
 
-// const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 ReactDOM.render((
     <Router history={browserHistory}>
@@ -19,6 +15,7 @@ ReactDOM.render((
        <Route path="/login" component={Login}/>
       <Route path="/signup" component={Signup}/>
       <Route path="/dashboard" component={Dashboard}/>
+      <Route path="/dashboard/:page" component={Dashboard}/>
     </Router>
   ), document.getElementById('root'));
 registerServiceWorker();
