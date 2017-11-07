@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import {Row, Col, button} from 'react-materialize'
-import DRecordItem from '../../components/DRecordItem'
-
-class DonationRecord extends Component{
+import {Row} from 'react-materialize'
+class Settings extends Component{
 
     render(){
         return(
@@ -16,4 +14,4 @@ class DonationRecord extends Component{
     }
 }
 
-export default DonationRecord
+export default Settings

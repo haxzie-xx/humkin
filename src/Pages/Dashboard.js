@@ -20,7 +20,6 @@ const style = {
 const menu = [
                 ['dashview','DashBoard'],
                 ['blooddonation','Blood Donation'],
-                ['donationrecords','Donation Records'],
                 ['request','Hospital Requests'],
                 ['nurses','Nurses'],
                 ['donors','Donors'],
@@ -40,18 +39,16 @@ class Dashboard extends Component{
             case 1:
                 return <Donation/>
             case 2:
-                return <DonationRecord />
-            case 3:
                 return <Requests/>
-            case 4:
+            case 3:
                 return <Nurses/>
-            case 5:
+            case 4:
                 return <Donors/>
-            case 6:
+            case 5:
                 return <Storage/>
-            case 7:
+            case 6:
                 return <Campaign/>
-            case 8:
+            case 7:
                 return <Settings/>
             default:
                 return <Donation/>

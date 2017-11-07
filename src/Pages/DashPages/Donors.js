@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Row, Col, button} from 'react-materialize'
 import DRecordItem from '../../components/DRecordItem'
 
 class Donors extends Component{

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Input, Button, Tabs, Tab} from 'react-materialize'
+import {Row, Col, Input, Button} from 'react-materialize'
 
 const bloodType = [ 
                     'A+', 'A-',
@@ -8,12 +8,6 @@ const bloodType = [
                     'O+', 'O-'
                 ]
 
-const locations = [
-                    'Mangalore',
-                    'Bangalore',
-                    'Mysore',
-                    'Belgavi'
-                    ]
 const Fridges = [
             'F1',
             'F2',
@@ -56,7 +50,7 @@ class DonationForm extends Component{
                 </Col>
 
                 <Input s={12} m={6} type="number" label="Quantity in ml" validate/>
-
+                <Input s={12} m={6} type="number" label="Nurse ID" validate/>
                 <Col s={12} m={12} l={12}>
                     <p className=" pad10">Storage Fridge Number</p>
                 </Col>

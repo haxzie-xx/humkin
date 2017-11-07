@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col} from 'react-materialize'
+import {Row} from 'react-materialize'
 
 class Requests extends Component{
     

@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Row, Button} from 'react-materialize'
 import DonationForm from './DonationForm'
 import DonationRecord from './DonationRecord'
+
 class Donation extends Component{
 
     constructor(){
@@ -25,7 +26,7 @@ class Donation extends Component{
     handleClick = () =>{
         let sid = this.state.screenId === 0 ? 1 : 0 ;
         this.setState((prevState, props) => {
-          return {screenId: sid}     
+          return { screenId: sid }     
         });
       }
     
