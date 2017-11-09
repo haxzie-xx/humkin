@@ -196,6 +196,17 @@
     font-size: 15px;
   }
 
+  .custom-select {
+    border-bottom: 2px solid #CCC;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    color: #666;
+  }
+  
   .m20bottom{
     margin-bottom: 20px;
   }
@@ -253,6 +264,10 @@
   .pad20{
     padding: 20px;
   }
+
+.pad20bottom{
+  padding-bottom: 20px;
+}
 
   .full-height{
     height: 100vh;

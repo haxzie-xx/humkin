@@ -1,15 +1,16 @@
 import React, {Component} from 'react'
 
-class DRecordItem extends Component{
+class NurseListItem extends Component{
 
     render(){
         return(
 
             <tr>
+                <td> { this.props.nid } </td>
                 <td> { this.props.name } </td>
-                <td> { this.props.date } </td>
-                <td> { this.props.blood_type} </td>
-                <td> { this.props.qty }</td>
+                <td> { this.props.email } </td>
+                <td> { this.props.phone} </td>
+                <td> { this.props.city }</td>
                 <td> { this.props.fridge }</td>
                 <td> { this.props.nurse }</td>
             </tr>
@@ -17,4 +18,4 @@ class DRecordItem extends Component{
     }
 }
 
-export default DRecordItem
+export default NurseListItem

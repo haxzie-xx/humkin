@@ -1,15 +1,14 @@
-import React, {Component} from 'react'
-import {Row, Col} from 'react-materialize'
-import DashView from './DashPages/DashView'
-import Donation from './DashPages/Donation'
-import Requests from './DashPages/Requests'
-import DonationRecord from './DashPages/DonationRecord'
-import Campaign from './DashPages/Campaign'
-import Nurses from './DashPages/Nurses'
-import Storage from './DashPages/Storage'
-import Donors from './DashPages/Donors'
-import Settings from './DashPages/Settings'
-import {Link} from 'react-router'
+import React, {Component} from 'react';
+import {Row, Col} from 'react-materialize';
+import DashView from './DashPages/DashView';
+import Donation from './DashPages/Donation/Donation';
+import Requests from './DashPages/Request/Requests';
+import Campaign from './DashPages/Camps/Campaign';
+import Nurses from './DashPages/Nurse/Nurses';
+import Storage from './DashPages/Storage/Storage';
+import Donors from './DashPages/Donor/Donors';
+import Settings from './DashPages/Settings';
+import {Link} from 'react-router';
 
 const style = {
     "margin": "0px",
@@ -19,10 +18,10 @@ const style = {
 
 const menu = [
                 ['dashview','DashBoard'],
+                ['donors','Donors'],
                 ['blooddonation','Blood Donation'],
                 ['request','Hospital Requests'],
                 ['nurses','Nurses'],
-                ['donors','Donors'],
                 ['storage','Blood Storage'],
                 ['camps','Campaigns'],
                 ['settings','Settings']
@@ -35,23 +34,23 @@ class Dashboard extends Component{
       
         switch(this.getCurrentPageId()){
             case 0:
-                return <DashView/>
+                return <DashView/>;
             case 1:
-                return <Donation/>
+                return <Donors/>;
             case 2:
-                return <Requests/>
+                return <Donation/>;
             case 3:
-                return <Nurses/>
+                return <Requests/>;
             case 4:
-                return <Donors/>
+                return <Nurses/>;
             case 5:
-                return <Storage/>
+                return <Storage/>;
             case 6:
-                return <Campaign/>
+                return <Campaign/>;
             case 7:
-                return <Settings/>
+                return <Settings/>;
             default:
-                return <Donation/>
+                return <Donation/>;
             }
     }
 
@@ -81,8 +80,6 @@ class Dashboard extends Component{
                     <div className="nav-wrapper fucia">
                     <a href="/" className="m20left main_logo">HumKin</a>
                     <ul className="right hide-on-med-and-down">
-                        <li><a href="sass.html"><i className="material-icons">search</i></a></li>
-                        <li><a href="badges.html"><i className="material-icons">view_module</i></a></li>
                         <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li>
                         <li><a href="mobile.html"><i className="material-icons">more_vert</i></a></li>
                     </ul>

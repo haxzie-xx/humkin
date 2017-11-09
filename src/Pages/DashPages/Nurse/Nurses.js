@@ -12,12 +12,11 @@ class Nurses extends Component{
                         <p className="card_title m0top">Add a Nurse</p>
                         <hr className="_small_line" />  
                     </Row>
-                    <Input s={12} m={6} type="tel" label="Adhaar no" validate/>
                     <Input s={12} m={6} type="text" label="First name" validate/>
                     <Input s={12} m={6} type="text" label="Lasr name" validate/>
+                    <Input s={12} m={6} type="email" label="Email Id" validate/>
                     <Input s={12} m={6} type="tel" label="Phone Number" validate/>
                     <Input s={12} m={6} type="text"  label="Join Date (DD/MM/YYYY)" onChange={(e, value) => {}}  />
-                    <Input s={12} m={6} type="text"  label="Date of birth (DD/MM/YYYY)" onChange={(e, value) => {}} />
                     <Input s={12} m={6} type="text" label="Location/ City" validate/>
                     <Input s={12} m={6} type="text" label="Address" validate/>                    
                     < br/>

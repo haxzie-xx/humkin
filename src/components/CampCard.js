@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Button} from 'react-materialize'
+import {Row, Col} from 'react-materialize'
 
 const style={
     margin : '0px'
@@ -17,7 +17,6 @@ class CampCard extends Component{
                     <p className="_caption valign-wrapper"><i className="tiny material-icons">location_on</i> &nbsp;{ this.props.campLocation }</p>
                     <p className="_date valign-wrapper" style={style}><i className="tiny material-icons">access_time</i> &nbsp;{ this.props.campDate }</p>
                     <Row className="m0 pad10">
-                    <Button className="m10 waves-effect waves-light red accent-2">view details</Button>
                     </Row>
                 </div>
             </div>

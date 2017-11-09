@@ -13,7 +13,9 @@ class Signup extends Component{
                 </div>
             </nav>
         </div>
+        <div className="basic_card ">
         <SignupForm/>
+        </div>
         </div>
         )
     }
