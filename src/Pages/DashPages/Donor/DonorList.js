@@ -1,12 +1,61 @@
 import React, {Component} from 'react';
 import {Table} from 'react-materialize';
 import DonorListItem from './DonorListItem';
+import axios from 'axios';
+import api from '../../../api.json';
 
 class DonorList extends Component{
 
+    constructor(props){
+        super(props);
+        this.state = {
+            donors : '',
+            isAvailable : false
+        }
+    }
 
     editCallBack = (adhaar) => {
         this.props.editCallBack(adhaar);
+    }
+
+    loadDonorList(){
+
+        axios.get(api.url+'/all_donors',{
+
+        }).then((response) => {
+            console.log(response);
+             this.setState((prevState, props) => {
+                 return({ donors : response.data, isAvailable : true });
+             });
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    prepareDonorList(){
+        let rows = [];
+        if(this.state.isAvailable){
+            console.log(this.state.donors);
+            let donorData = this.state.donors;
+            for( let i = 0; i< Object.keys(donorData).length; i++){
+                rows.push(
+                    <DonorListItem
+                        editCallBack={ this.editCallBack }
+                        adhaar={donorData[i].adhaar} 
+                        name={donorData[i].fname+' '+donorData[i].lname}
+                        age={ donorData[i].dob }
+                        blood={ donorData[i].blood }
+                        gender={ donorData[i].gender }
+                        location={ donorData[i].location }
+                        phone={ donorData[i].phone }
+                        email={ donorData[i].email } />
+                )
+            }
+
+            return rows;
+        }else{
+            return( <h2> No Data to Display </h2>);
+        }
     }
 
     render(){
@@ -26,52 +75,7 @@ class DonorList extends Component{
                     </tr>
             </thead>
             <tbody>
-                <DonorListItem
-                    editCallBack={ this.editCallBack }
-                    adhaar="22772772" 
-                    name="Musthaq Ahamd"
-                    age="20" 
-                    blood="A+" 
-                    gender="M"
-                    location="Kasaragod"
-                    phone="9539518599"
-                    email="musthu.gm@gmail.com" />
-                <DonorListItem 
-                    adhaar="22772772" 
-                    name="Musthaq Ahamd" 
-                    age="20" 
-                    blood="A+" 
-                    gender="M"
-                    location="Kasaragod"
-                    phone="9539518599"
-                    email="musthu.gm@gmail.com" />
-                <DonorListItem 
-                    adhaar="22772772" 
-                    name="Musthaq Ahamd"
-                    age="20"  
-                    blood="A+" 
-                    gender="M"
-                    location="Kasaragod"
-                    phone="9539518599"
-                    email="musthu.gm@gmail.com" />
-                <DonorListItem 
-                    adhaar="22772772" 
-                    name="Musthaq Ahamd" 
-                    age="20" 
-                    blood="A+" 
-                    gender="M"
-                    location="Kasaragod"
-                    phone="9539518599"
-                    email="musthu.gm@gmail.com" />
-                <DonorListItem 
-                    adhaar="22772772" 
-                    name="Musthaq Ahamd" 
-                    age="20" 
-                    blood="A+" 
-                    gender="M"
-                    location="Kasaragod"
-                    phone="9539518599"
-                    email="musthu.gm@gmail.com" />
+                { this.state.isAvailable ? this.prepareDonorList() : this.loadDonorList() }
             </tbody>
             </Table>
             </div>

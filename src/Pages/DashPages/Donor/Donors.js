@@ -15,7 +15,7 @@ class Donors extends Component{
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return <DonorRegistration/>;
+            return <DonorRegistration closeCallBack={ ()=> { this.setState({ screenId: 0 })}}/>;
         else if(this.state.screenId === 2)
             return <DonorEdit adhaar={this.state.donorAdhaar} />
 
