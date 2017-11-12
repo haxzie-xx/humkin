@@ -20,7 +20,7 @@ class DonorList extends Component{
 
     loadDonorList(){
 
-        axios.get(api.url+'/all_donors',{
+        axios.get(api.url+'/all_donors/'+9,{
 
         }).then((response) => {
             console.log(response);

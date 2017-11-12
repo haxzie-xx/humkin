@@ -10,16 +10,16 @@ class Nurses extends Component{
         super(props);
         this.state = {
             screenId : 0,
-            donorAdhaar : ''
+            nid : ''
         }
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return <NurseRegistration/>;
+            return <NurseRegistration closeCallBack={ this.closeCallBack } bbid={9}/>;
         else if(this.state.screenId === 2)
-            return <NurseEdit adhaar={this.state.donorAdhaar} />
+            return <NurseEdit nid={this.state.nid} closeCallBack={ this.closeCallBack } />
 
-        return <NurseList editCallBack={ this.editCallBack } />;
+        return <NurseList editCallBack={ this.editCallBack } closeCallBack={ this.closeCallBack } />;
     }
 
     getButtonIcon(){
@@ -35,10 +35,14 @@ class Nurses extends Component{
         });
       }
 
-    editCallBack = (adhaar) =>{
+    editCallBack = (nid) =>{
         this.setState((prevState, props) => {
-            return { screenId: 2, donorAdhaar: adhaar}
+            return { screenId: 2, nid: nid}
         });
+    }
+
+    closeCallBack = () => {
+        this.setState({ screenId : 0 });
     }
     
 

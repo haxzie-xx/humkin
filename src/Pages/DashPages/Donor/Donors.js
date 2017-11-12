@@ -15,11 +15,15 @@ class Donors extends Component{
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return <DonorRegistration closeCallBack={ ()=> { this.setState({ screenId: 0 })}}/>;
+            return <DonorRegistration closeCallBack={ this.showListCallBack }/>;
         else if(this.state.screenId === 2)
-            return <DonorEdit adhaar={this.state.donorAdhaar} />
+            return <DonorEdit adhaar={this.state.donorAdhaar} closeCallBack={ this.showListCallBack }/>
 
         return <DonorList editCallBack={ this.editCallBack } />;
+    }
+
+    showListCallBack = () => {
+        this.setState({ screenId: 0 });
     }
 
     getButtonIcon(){
