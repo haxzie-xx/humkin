@@ -19,7 +19,7 @@ class CreateStorage extends Component{
 
         if(this.props.bbid){
 
-            axios.post(api.url+'/create_fridge',{
+            axios.post(api.url+'/create_storage',{
                 'bbid'      : this.state.bbid,
                 'name'      : this.state.name,
                 'capacity'    : this.state.capacity
@@ -47,7 +47,6 @@ class CreateStorage extends Component{
 
             <Row>
             
-                <div className="basic_card m10top row pad20 card-1">
                     <Row>
                         <p className="card_title">Add Storage Fridge</p>
                         <hr className="_small_line" />  
@@ -71,11 +70,10 @@ class CreateStorage extends Component{
                         <Button className="m10 waves-effect waves-light red accent-2" onClick={ ()=> { this.createStorage() }}>Add Fridge</Button>
                     </div>
                     </Col>
-                </div>
              </Row>
 
         )
     }
 }
 
-export default NurseRegistration
+export default CreateStorage;

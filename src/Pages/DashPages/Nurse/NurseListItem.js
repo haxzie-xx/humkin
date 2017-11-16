@@ -10,14 +10,13 @@ class NurseListItem extends Component{
     }
     render(){
         return(
-
             <tr onClick={ this.handleCLick }>
                 <td> { this.props.nid } </td>
                 <td> { this.props.name } </td>
-                <td> { this.props.email } </td>
-                <td> { this.props.phone} </td>
-                <td> { this.props.gender }</td>
-                <td> { this.props.location }</td>
+                <td> { this.props.gender } </td>
+                <td> { this.props.location} </td>
+                <td> { this.props.phone }</td>
+                <td> { this.props.email }</td>
                 <td> { this.props.date }</td>
             </tr>
         )

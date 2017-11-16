@@ -24,7 +24,7 @@ class StorageListItem extends Component{
                 <td> { this.props.o_n } </td>
                 <td> { this.props.capacity} </td>
                 <td> { this.props.used }</td>
-                <td> { this.props.spaceleft }</td>
+                <td> { this.props.space_left }</td>
             </tr>
         )
     }

@@ -6,9 +6,6 @@ class BloodBank extends Component{
     render(){
         return(
             <div className="container m20bottom">
-            <Row>
-                <p className="card_title m0b">Blood Banks</p>
-            </Row>
             <div className="row">
                 <div className="grad_top_card card-2">
                     <div className="basic_card pad20">

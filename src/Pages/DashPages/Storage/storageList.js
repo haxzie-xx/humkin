@@ -54,7 +54,7 @@ class StorageList extends Component{
                         op={ storeData[i].op }
                         o_n={ storeData[i].o_n }
                         used={ storeData[i].used }
-                        space_left={ storeData[i].spaceleft }/>
+                        space_left={ storeData[i].space_left }/>
                 )
             }
 

@@ -88,7 +88,7 @@ class Dashboard extends Component{
                 </div>
 
             <Row className="m0 p0">
-                <Col s={12} m={3} l={3} className="white full-height card-1 fixed-nav m0 p0" style={style}>
+                <Col s={12} m={3} l={2} className="white full-height card-1 fixed-nav m0 p0" style={style}>
                 <div className="collection">
                         {
                             menu.map( (listValue, index) => {
@@ -99,8 +99,8 @@ class Dashboard extends Component{
 
                 </div>
                 </Col>
-                <Col s={12} m={3} l={3} />
-                <Col s={12} m={9} l={9} className="m0 p0">
+                <Col s={12} m={3} l={2} />
+                <Col s={12} m={9} l={10} className="m0 p0">
 
                     {
                         this.getView(this.props.params.page)
