@@ -8,13 +8,13 @@ class DRecordItem extends Component{
     }
     render(){
         return(
-
-            <tr onClick={ this.handleClick }>
+            // onClick={ this.handleClick }
+            <tr >
+                <td> { this.props.did } </td>
                 <td> { this.props.name } </td>
                 <td> { this.props.date } </td>
-                <td> { this.props.blood_type} </td>
-                <td> { this.props.qty }</td>
-                <td> { this.props.fridge }</td>
+                <td> { this.props.btype} </td>
+                <td> { this.props.qty } ml</td>
                 <td> { this.props.nurse }</td>
             </tr>
         )

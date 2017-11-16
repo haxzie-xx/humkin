@@ -3,6 +3,8 @@ import {Button} from 'react-materialize';
 import NurseList from './NurseList';
 import NurseRegistration from './NurseRegistration';
 import NurseEdit from './NurseEdit';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class Nurses extends Component{
 
@@ -15,7 +17,7 @@ class Nurses extends Component{
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return <NurseRegistration closeCallBack={ this.closeCallBack } bbid={9}/>;
+            return <NurseRegistration closeCallBack={ this.closeCallBack }/>;
         else if(this.state.screenId === 2)
             return <NurseEdit nid={this.state.nid} closeCallBack={ this.closeCallBack } />
 

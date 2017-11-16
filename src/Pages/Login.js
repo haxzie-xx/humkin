@@ -3,6 +3,8 @@ import {Button} from 'react-materialize';
 import api from '.././api.json';
 import axios from 'axios';
 import {browserHistory} from 'react-router'
+import Auth from '../auth';
+let auth = new Auth();
 
 const  style = {
   margin: "30px auto 0px auto"
@@ -13,6 +15,7 @@ class Login extends Component{
 
     constructor(props){
         super(props);
+
         this.state = {
             email : '',
             password : ''
@@ -29,7 +32,7 @@ class Login extends Component{
             }).then((response) => {
                 
                 if(response.data){
-                    alert('Hello');
+                    auth.setUser(response.data.bbid);
                     browserHistory.push('/dashboard');
                 }
                 

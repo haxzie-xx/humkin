@@ -141,6 +141,13 @@
     color: #3F3E3E;
 }
 
+.bcard_title{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 30px;
+  font-weight: 300;
+  color: #3F3E3E;
+  margin: auto;
+}
 
 .small_line{
     margin: 0px 0 50px 0;

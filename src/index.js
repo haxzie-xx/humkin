@@ -1,12 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import Home from './Pages/Home'
-import Login from './Pages/Login'
-import Signup from './Pages/Signup'
-import Dashboard from './Pages/Dashboard'
-import registerServiceWorker from './registerServiceWorker'
-import { Router, Route, browserHistory } from 'react-router'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import Dashboard from './Pages/Dashboard';
+import Hospital from './Pages/Hospitals';
+import registerServiceWorker from './registerServiceWorker';
+import { Router, Route, browserHistory } from 'react-router';
 
 
 ReactDOM.render((
@@ -16,6 +17,7 @@ ReactDOM.render((
       <Route path="/signup" component={Signup}/>
       <Route path="/dashboard" component={Dashboard}/>
       <Route path="/dashboard/:page" component={Dashboard}/>
+      <Route path="/hospital/:hid" component={Hospital}/>
     </Router>
   ), document.getElementById('root'));
 registerServiceWorker();

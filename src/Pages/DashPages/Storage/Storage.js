@@ -1,56 +1,74 @@
 import React, {Component} from 'react';
-import {Button} from 'react-materialize';
-import StorageList from './storageList';
-import AddStorage from './addStorage';
-import EditStorage from './editStorage';
+import BloodCard from './bloodCard';
+import {Table} from 'react-materialize';
+import axios from 'axios';
+import api from '../../../api.json';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class Storage extends Component{
+   
     constructor(props){
         super(props);
         this.state = {
-            screenId : 0,
-            fid : ''
+            isAvailable : false,
+            storageData : {},
+            bbid    : auth.getBbid()
         }
     }
-
-    getCurrentView(){
-        if(this.state.screenId === 1)
-            return <AddStorage closeCallBack={ this.closeCallBack } bbid={9}/>;
-        else if(this.state.screenId === 2)
-            return <EditStorage fid={this.state.fid} closeCallBack={ this.closeCallBack } />
-
-        return <StorageList editCallBack={ this.editCallBack } closeCallBack={ this.closeCallBack } />;
+    getStorage(){
+        axios.get(api.url+'/storage_details/'+this.state.bbid,{
+            
+                    }).then((response) => {
+                        console.log(response);
+                         this.setState((prevState, props) => {
+                             return({ storageData : response.data, isAvailable : true });
+                         });
+                    }).catch((error) => {
+                        console.log(error);
+                    });
     }
 
-    getButtonIcon(){
-        if(this.state.screenId === 1 || this.state.screenId === 2)
-                    return "close";
-        else return "add";
+    prepareData(){
+
+        if(this.state.isAvailable){
+            let data = this.state.storageData[0];
+            return(
+                <tr>
+                    <td> { data.ap } L</td>
+                    <td> { data.an } L</td>
+                    <td> { data.bp } L</td>
+                    <td> { data.bn } L</td>
+                    <td> { data.abp } L</td>
+                    <td> { data.abn } L</td>
+                    <td> { data.op } L</td>
+                    <td> { data.o_n } L</td>
+                    <td> { data.total } L</td>
+                </tr>
+            )
+        }
     }
-
-    handleClick = () => {
-        let sid = this.state.screenId === 0 ? 1 : 0 ;
-        this.setState((prevState, props) => {
-          return { screenId: sid }     
-        });
-      }
-
-    editCallBack = (fid) =>{
-        this.setState((prevState, props) => {
-            return { screenId: 2, fid: fid}
-        });
-    }
-
-    closeCallBack = () => {
-        this.setState({ screenId : 0 });
-    }
-
     render(){
         return(
             <div className="basic_card pad20 card-2 m20top">
-                { this.getCurrentView() }
-                <Button floating className='red' large style={{bottom: '45px', right: '24px', position: 'fixed'}} onClick={ this.handleClick }><i className="material-icons">{ this.getButtonIcon() }</i></Button>
-
+               <Table className="stripped">
+                <thead>
+                    <tr>
+                        <th data-field="ap">A+</th>
+                        <th data-field="an">A-</th>
+                        <th data-field="bp">B+</th>
+                        <th data-field="bn">B-</th>
+                        <th data-field="abp">AB+</th>
+                        <th data-field="abn">AB-</th>
+                        <th data-field="op">O+</th>
+                        <th data-field="o_n">O-</th>
+                        <th data-field="total">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    { this.state.isAvailable ? this.prepareData() : this.getStorage() }
+                    </tbody>
+                </Table>
             </div>
         )
     }

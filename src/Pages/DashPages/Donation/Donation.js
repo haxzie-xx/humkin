@@ -3,6 +3,8 @@ import {Row, Button} from 'react-materialize';
 import DonationForm from './DonationForm';
 import DonationRecord from './DonationRecord';
 import DonationEdit from './DonationEdit';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class Donation extends Component{
 
@@ -10,7 +12,8 @@ class Donation extends Component{
         super()
         this.state = {
             screenId: 0,
-            recordId: 0
+            recordId: 0,
+            bbid    : auth.getBbid()
         }
     }
     getCurrentView(){

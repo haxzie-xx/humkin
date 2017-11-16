@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Row, Col, Input, Button} from 'react-materialize'
 import api from '../../../api.json';
 import axios from 'axios';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class NurseEdit extends Component{
 
@@ -12,7 +14,7 @@ class NurseEdit extends Component{
             isLoaded    : false,
             nurse       : {},
             nid         : this.props.nid,
-            bbid        : 9,
+            bbid        : auth.getBbid(),
             fname       : '',
             lname       : '',
             email       : '',
@@ -26,7 +28,7 @@ class NurseEdit extends Component{
     loadData(){
         
                 if(!this.isLoaded){
-                    axios.get(api.url+'/nurse_details/'+9+'/'+this.props.nid, {
+                    axios.get(api.url+'/nurse_details/'+this.state.bbid+'/'+this.props.nid, {
                         
                     }).then((response) =>{
                         let nurse = response.data;
@@ -103,7 +105,7 @@ class NurseEdit extends Component{
                 if(this.props.nid){
         
                     axios.post(api.url+'/delete_nurse', {
-                            'bbid'      : 9,
+                            'bbid'      : this.state.bbid,
                             'nid'    : this.state.nurse.nid
                     }).then((response) => {
                         if(response.status === 200){

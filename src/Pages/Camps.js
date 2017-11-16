@@ -11,31 +11,21 @@ class Camps extends Component{
             </Row>
             <Row> 
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
                 <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
-                            campLocation="Karavali stadium, Mangalore "
-                            campDate="25/07/2017 9:30pm "/>
-                <CampCard campName="Test Name Goes here"
-                            campCaption="Lorem ipsum dolor sit amet concepticus la italicana fil biladil america, va shamsu val qamaru hal fee haza wow"
                             campLocation="Karavali stadium, Mangalore "
                             campDate="25/07/2017 9:30pm "/>
             </Row>

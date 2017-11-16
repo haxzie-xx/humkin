@@ -3,6 +3,8 @@ import {Table} from 'react-materialize';
 import NurseListItem from './NurseListItem';
 import axios from 'axios';
 import api from '../../../api.json';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class NurseList extends Component{
 
@@ -11,7 +13,8 @@ class NurseList extends Component{
         super(props);
         this.state = {
             nurses : '',
-            isAvailable : false
+            isAvailable : false,
+            bbid        : auth.getBbid()
         }
     }
 
@@ -21,7 +24,7 @@ class NurseList extends Component{
 
     loadNurseList(){
         
-                axios.get(api.url+'/all_nurses/'+9,{
+                axios.get(api.url+'/all_nurses/'+this.state.bbid,{
         
                 }).then((response) => {
                     console.log(response);

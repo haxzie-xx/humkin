@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Row, Col, Input, Button} from 'react-materialize'
 import axios from 'axios';
 import api from '../../../api.json';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 const hstyle = {
     'display' : 'none'
@@ -16,11 +18,13 @@ class DonationForm extends Component{
     constructor(props){
         super(props);
         this.state = {
-            fridges     : {},
-            isLoaded    : false,
             adhaar      : '',
             newDonor    : false,
-            blood       : ''
+            isNurse     : false,
+            blood       : '',
+            bbid        : auth.getBbid(),
+            quantity    : '',
+            nid         : ''
         }
     }
 
@@ -28,13 +32,30 @@ class DonationForm extends Component{
         
         axios.post(api.url+'/check_registered_donor', {
             'adhaar' : adhaarId,
-            'bbid'  :   9
+            'bbid'  :   this.state.bbid
         }).then((respose) => {
             if(respose.status === 200){
                 console.log(respose.data);
                 this.setState({ newDonor : true, adhaar: adhaarId, blood: respose.data[0].blood })
             }else{
                 this.setState({ newDonor : false, adhaar: adhaarId })
+            }
+            
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    checkNurseId(nurse_id){
+        axios.post(api.url+'/check_nurse_id', {
+            'nurse_id' : nurse_id,
+            'bbid'  :   this.state.bbid
+        }).then((respose) => {
+            if(respose.status === 200){
+                console.log(respose.data);
+                this.setState({ isNurse : true, nid: nurse_id })
+            }else{
+                this.setState({ isNurse : false, nid: nurse_id })
             }
             
         }).catch((error) => {
@@ -51,29 +72,30 @@ class DonationForm extends Component{
         }
     }
 
-    getFridges(){
-        axios.get(api.url+'/storage_names/'+9,{
-
-        }).then((results) => {
-            console.log(results);
-            this.setState({ fridges : results.data , isLoaded : true });
-        }).catch((error) => {
-            console.log(error);
-        })
-    }
-
-    getFridgeRadios(){
-        if(this.state.isLoaded){
-            let radios = []
-            let radioData = this.state.fridges;
-            for( let i = 0; i < Object.keys(radioData).length; i++){
-                radios.push(
-                    <Input name="fridge" type='radio' value={radioData[i].fid} label={radioData[i].name} />
-                );
-            }
-
-            return radios;
+    getNurseStyle(){
+        if(this.state.isNurse){
+            return vstyle;
+        }else{
+            return hstyle;
         }
+    }
+    createDonation(){
+        axios.post(api.url+'/create_donation', {
+            'nid'  : this.state.nid,
+            'bbid'      : this.state.bbid,
+            'adhaar'    : this.state.adhaar,
+            'quantity'  : this.state.quantity
+        }).then((respose) => {
+            if(respose.status === 200){
+                console.log(respose.data);
+                
+            }else{
+                alert('Something went wrong')
+            }
+            
+        }).catch((error) => {
+            console.log(error)
+        });
     }
     render(){
         return(
@@ -92,23 +114,23 @@ class DonationForm extends Component{
                 } validate/>
 
                 <div style={ this.getStyles() }>
-                    <Input s={12} m={6} type="text" value={ this.state.blood}disabled/>
-                    <Input s={12} m={6} type="number" label="Quantity in ml" validate/>
-                    <Input s={12} m={6} type="number" label="Nurse ID" validate/>
-                    <Col s={12} m={12} l={12}>
-                        <p className=" pad10">Storage Fridge Number</p>
-                    </Col>
+                    <Input s={12} m={6} type="text" value={ this.state.blood} disabled/>
+                    <Input s={12} m={6} type="number" label="Quantity in ml" 
+                    onChange={
+                        (e) => {
+                            this.setState({ quantity : e.target.value });
+                        }
+                    } validate/>
+                    <Input s={12} m={6} type="number" label="Nurse ID" 
+                    onChange={
+                        (e) => {
+                            this.checkNurseId(e.target.value);
+                        }
+                    } validate/>
 
-                    <Col s={12} className="center">
-                        
-                        {
-                            this.state.isLoaded ? this.getFridgeRadios() : this.getFridges()
-                            }
-                    </Col>
-            
             <Col s={9}/>
-            <div className="col s3 m0 pad10 right">
-                <Button className="m10 waves-effect waves-light red accent-2">Add to bank</Button>
+            <div className="col s3 m0 pad10 right" style={ this.getNurseStyle() } >
+                <Button className="m10 waves-effect waves-light red accent-2" onClick={ ()=> { this.createDonation() }}>Add to bank</Button>
             </div>
         </div>
         </div>        

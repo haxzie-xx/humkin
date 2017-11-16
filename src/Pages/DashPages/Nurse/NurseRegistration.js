@@ -3,6 +3,8 @@ import {Row, Col, Input, Button} from 'react-materialize'
 import api from '../../../api.json';
 import axios from 'axios';
 import validator from 'email-validator';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 const hstyle = {
     'display' : 'none'
@@ -18,7 +20,7 @@ class NurseRegistration extends Component{
         super(props);
         this.state = {
             newNurse    : false,
-            bbid        : this.props.bbid,
+            bbid        : auth.getBbid(),
             email       : '',
             fname       : '',
             lname       : '',

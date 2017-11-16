@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Row, Col, Input, Button} from 'react-materialize'
 import axios from 'axios';
 import api from '../../../api.json';
+import Auth from '../../../auth'
+let auth = new Auth();
 
 const bloodType = [
                     'A+', 'A-',
@@ -24,7 +26,7 @@ class DonationForm extends Component{
         this.state = {
             newDonor    : false,
             adhaar      : '',
-            bbid        : 9,
+            bbid        : auth.getBbid(),
             fname       : '',
             lname       : '',
             email       : '',
@@ -72,7 +74,7 @@ class DonationForm extends Component{
          }else{
 
              axios.post(api.url+'/add_to_registry',{
-                 'bbid' : 9,
+                 'bbid' : this.state.bbid,
                  'adhaar' : this.state.adhaar
              }).then((response) => {
                  if(response.status === 200){

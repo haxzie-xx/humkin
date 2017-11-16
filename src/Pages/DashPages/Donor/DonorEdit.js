@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Row, Col, Input, Button} from 'react-materialize';
 import api from '../../../api.json';
 import axios from 'axios';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 const bloodType = [
                     'A+', 'A-',
@@ -19,7 +21,7 @@ class DonorEdit extends Component{
             isLoaded    : false,
             donor       : {},
             adhaar      : this.props.adhaar,
-            bbid        : 9,
+            bbid        : auth.getBbid(),
             fname       : '',
             lname       : '',
             email       : '',
@@ -154,7 +156,7 @@ class DonorEdit extends Component{
         if(this.props.adhaar){
 
             axios.post(api.url+'/delete_donor', {
-                    'bbid'      : 9,
+                    'bbid'      : this.state.bbid,
                     'adhaar'    : this.state.donor.adhaar
             }).then((response) => {
                 if(response.status === 200){

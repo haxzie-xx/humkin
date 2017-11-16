@@ -9,11 +9,14 @@ import Storage from './DashPages/Storage/Storage';
 import Donors from './DashPages/Donor/Donors';
 import Settings from './DashPages/Settings';
 import {Link} from 'react-router';
+import Auth from '../auth';
+var auth = new Auth();
 
 const style = {
     "margin": "0px",
     "padding": "0px"
 }
+
 
 
 const menu = [
@@ -31,7 +34,7 @@ class Dashboard extends Component{
 
 
     getView(){
-      
+      console.log('bbid : '+auth.getBbid());
         switch(this.getCurrentPageId()){
             case 0:
                 return <DashView/>;

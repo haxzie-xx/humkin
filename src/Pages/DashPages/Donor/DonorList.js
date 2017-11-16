@@ -3,6 +3,8 @@ import {Table} from 'react-materialize';
 import DonorListItem from './DonorListItem';
 import axios from 'axios';
 import api from '../../../api.json';
+import Auth from '../../../auth';
+let auth = new Auth();
 
 class DonorList extends Component{
 
@@ -10,7 +12,8 @@ class DonorList extends Component{
         super(props);
         this.state = {
             donors : '',
-            isAvailable : false
+            isAvailable : false,
+            bbid    : auth.getBbid()
         }
     }
 
@@ -20,7 +23,7 @@ class DonorList extends Component{
 
     loadDonorList(){
 
-        axios.get(api.url+'/all_donors/'+9,{
+        axios.get(api.url+'/all_donors/'+this.state.bbid,{
 
         }).then((response) => {
             console.log(response);

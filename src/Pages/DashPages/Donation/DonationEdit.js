@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import {Row, Col, Input, Button} from 'react-materialize'
+import Auth from '../../../auth';
+let auth = new Auth();
 
 const Fridges = [
             'F1',
