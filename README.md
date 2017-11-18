@@ -1,4 +1,4 @@
-# HumKin
+# HumKin - Open BloodBank Management System
 React.js based front-end for open Blood Bank portal and Blood Bank Managemnet System
 
 Features:
@@ -24,3 +24,4 @@ npm run build
 ```
 
 ## Server
+Goto Node/Express server for [HumKin](https://github.com/haxzie/humkin)
