@@ -32,7 +32,7 @@ class NurseRegistration extends Component{
 
     createNurse(){
 
-        if(this.props.bbid){
+        if(auth.getBbid()){
 
             axios.post(api.url+'/create_nurse',{
                 'bbid'      : this.state.bbid,

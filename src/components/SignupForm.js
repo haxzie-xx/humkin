@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button} from 'react-materialize';
 import axios from 'axios';
 import api from '../api.json'
+import {browserHistory} from 'react-router';
 
 class SignupForm extends Component{
 
@@ -46,6 +47,9 @@ class SignupForm extends Component{
               })
               .then(function (response) {
                 console.log(response);
+                if(response.status === 200){
+                    browserHistory.push('/login');
+                }
               })
               .catch(function (error) {
                 console.log(error);

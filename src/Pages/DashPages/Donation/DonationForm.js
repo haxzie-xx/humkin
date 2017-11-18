@@ -88,7 +88,7 @@ class DonationForm extends Component{
         }).then((respose) => {
             if(respose.status === 200){
                 console.log(respose.data);
-                
+                this.props.onCloseEdit();
             }else{
                 alert('Something went wrong')
             }

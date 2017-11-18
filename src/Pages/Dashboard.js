@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Row, Col} from 'react-materialize';
 import DashView from './DashPages/DashView';
 import Donation from './DashPages/Donation/Donation';
-import Requests from './DashPages/Request/Requests';
 import Campaign from './DashPages/Camps/Campaign';
 import Nurses from './DashPages/Nurse/Nurses';
 import Storage from './DashPages/Storage/Storage';
 import Donors from './DashPages/Donor/Donors';
 import Settings from './DashPages/Settings';
 import Hospitals from './DashPages/Hospital/Hospitals';
+import Transfer from './DashPages/Transfer/transfer';
 
 import {Link} from 'react-router';
 import Auth from '../auth';
@@ -48,7 +48,7 @@ class Dashboard extends Component{
             case 3:
                 return <Hospitals/>
             case 4:
-                return <Requests/>;
+                return <Transfer/>;
             case 5:
                 return <Nurses/>;
             case 6:

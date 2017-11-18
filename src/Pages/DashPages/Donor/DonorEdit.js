@@ -44,7 +44,7 @@ class DonorEdit extends Component{
     loadData(){
 
         if(!this.isLoaded){
-            axios.get(api.url+'/donor_details/'+9+'/'+this.props.adhaar, {
+            axios.get(api.url+'/donor_details/'+this.state.bbid+'/'+this.props.adhaar, {
                 
             }).then((response) =>{
                 let donor = response.data;

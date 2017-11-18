@@ -5,7 +5,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Dashboard from './Pages/Dashboard';
-import Hospital from './Pages/Hospitals';
+import BBView from './Pages/BBView';
 import registerServiceWorker from './registerServiceWorker';
 import { Router, Route, browserHistory } from 'react-router';
 
@@ -17,7 +17,7 @@ ReactDOM.render((
       <Route path="/signup" component={Signup}/>
       <Route path="/dashboard" component={Dashboard}/>
       <Route path="/dashboard/:page" component={Dashboard}/>
-      <Route path="/hospital/:hid" component={Hospital}/>
+      <Route path="/bloodbank/:bbid" component={BBView}/>
     </Router>
   ), document.getElementById('root'));
 registerServiceWorker();

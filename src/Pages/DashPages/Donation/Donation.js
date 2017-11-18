@@ -18,7 +18,7 @@ class Donation extends Component{
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return < DonationForm />
+            return < DonationForm onCloseEdit={ this.onCloseEdit }/>
         else if(this.state.screenId === 2)
             return <DonationEdit onCloseEdit={ this.onCloseEdit }/>
 
