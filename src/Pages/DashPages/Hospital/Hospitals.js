@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
 import {Button} from 'react-materialize';
-import NurseList from './NurseList';
-import NurseRegistration from './NurseRegistration';
-import NurseEdit from './NurseEdit';
+import HospitalList from './HospitalList';
+import HospitalRegistration from './CreateHospital';
+import HospitalEdit from './HospitalEdit';
 
-
-class Nurses extends Component{
+class Hospital extends Component{
 
     constructor(props){
         super(props);
         this.state = {
             screenId : 0,
-            nid : ''
+            hid : ''
         }
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return <NurseRegistration closeCallBack={ this.closeCallBack }/>;
+            return <HospitalRegistration closeCallBack={ this.showListCallBack }/>;
         else if(this.state.screenId === 2)
-            return <NurseEdit nid={this.state.nid} closeCallBack={ this.closeCallBack } />
+            return <HospitalEdit hid={this.state.hid} closeCallBack={ this.showListCallBack }/>
 
-        return <NurseList editCallBack={ this.editCallBack } closeCallBack={ this.closeCallBack } />;
+        return <HospitalList editCallBack={ this.editCallBack } />;
+    }
+
+    showListCallBack = () => {
+        this.setState({ screenId: 0 });
     }
 
     getButtonIcon(){
@@ -36,14 +39,10 @@ class Nurses extends Component{
         });
       }
 
-    editCallBack = (nid) =>{
+    editCallBack = (hid) =>{
         this.setState((prevState, props) => {
-            return { screenId: 2, nid: nid}
+            return { screenId: 2, hid: hid}
         });
-    }
-
-    closeCallBack = () => {
-        this.setState({ screenId : 0 });
     }
     
 
@@ -58,4 +57,4 @@ class Nurses extends Component{
     }
 }
 
-export default Nurses
+export default Hospital;

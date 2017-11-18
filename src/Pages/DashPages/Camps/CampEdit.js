@@ -101,7 +101,7 @@ class CampEdit extends Component{
 
     getError(){
         if(this.state.cnum){
-            if(this.state.cnum.length != 10){
+            if(this.state.cnum.length !== 10){
                 return "Invalid Phone"; 
             }
         }

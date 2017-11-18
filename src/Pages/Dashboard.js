@@ -8,6 +8,8 @@ import Nurses from './DashPages/Nurse/Nurses';
 import Storage from './DashPages/Storage/Storage';
 import Donors from './DashPages/Donor/Donors';
 import Settings from './DashPages/Settings';
+import Hospitals from './DashPages/Hospital/Hospitals';
+
 import {Link} from 'react-router';
 import Auth from '../auth';
 var auth = new Auth();
@@ -23,7 +25,8 @@ const menu = [
                 ['dashview','DashBoard'],
                 ['donors','Donors'],
                 ['blooddonation','Blood Donation'],
-                ['request','Hospital Requests'],
+                ['hospitals','Hospitals'],
+                ['request','Blood Transfer'],
                 ['nurses','Nurses'],
                 ['storage','Blood Storage'],
                 ['camps','Campaigns'],
@@ -43,14 +46,16 @@ class Dashboard extends Component{
             case 2:
                 return <Donation/>;
             case 3:
-                return <Requests/>;
+                return <Hospitals/>
             case 4:
-                return <Nurses/>;
+                return <Requests/>;
             case 5:
-                return <Storage/>;
+                return <Nurses/>;
             case 6:
-                return <Campaign/>;
+                return <Storage/>;
             case 7:
+                return <Campaign/>;
+            case 8:
                 return <Settings/>;
             default:
                 return <Donation/>;

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import BloodCard from './bloodCard';
 import {Table} from 'react-materialize';
 import axios from 'axios';
 import api from '../../../api.json';
