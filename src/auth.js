@@ -17,6 +17,7 @@ class Auth {
 
     logout(){
         bbid = null;
+        browserHistory.push('/login')
     }
 }
 

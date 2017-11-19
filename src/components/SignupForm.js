@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-materialize';
+import {Row, Col, Button} from 'react-materialize';
 import axios from 'axios';
 import api from '../api.json'
 import {browserHistory} from 'react-router';
@@ -86,8 +86,9 @@ class SignupForm extends Component{
 
     render(){
         return(
-            <div className="container">
+            <Row>
             <div className="row">
+                <Col s={12} m={6}>
                 <p className="card_title">Manager Details</p>
                 <hr className="_small_line" />
                 <div className="input-field col s12 m6 l6">
@@ -134,9 +135,9 @@ class SignupForm extends Component{
                         } />
                     <label for="repassword">Confirm Password</label>
                 </div>
-            </div>
-            <div className="row">
-                <p className="card_title">Blood Bank Details</p>
+                </Col>
+                <Col s={12} m={6} >
+                 <p className="card_title">Blood Bank Details</p>
                 <hr className="_small_line" />
                 <div className="input-field col s12 m6 l6">
                     <input id="bname" type="text" className="validate"
@@ -180,13 +181,13 @@ class SignupForm extends Component{
                         }/>
                     <label for="pincode">PinCode</label>
                 </div>
-    
+            </Col>
             </div>
             <div className="row m0 pad10 center">
                 <Button className="m10 waves-effect waves-light red accent-2" 
                 onClick={ (event) => { this.createAccount(event)} } >Register</Button>
             </div>
-        </div>
+        </Row>
         )
     }
 }

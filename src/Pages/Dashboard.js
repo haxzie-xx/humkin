@@ -6,7 +6,7 @@ import Campaign from './DashPages/Camps/Campaign';
 import Nurses from './DashPages/Nurse/Nurses';
 import Storage from './DashPages/Storage/Storage';
 import Donors from './DashPages/Donor/Donors';
-import Settings from './DashPages/Settings';
+import Settings from './DashPages/Settings/Settings';
 import Hospitals from './DashPages/Hospital/Hospitals';
 import Transfer from './DashPages/Transfer/transfer';
 

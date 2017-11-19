@@ -31,12 +31,15 @@ class Login extends Component{
                 password: this.state.password
             }).then((response) => {
                 
-                if(response.data){
+                if(response.status === 200){
                     auth.setUser(response.data.bbid);
                     browserHistory.push('/dashboard');
+                }else{
+                    alert(' invalid credentials');
                 }
                 
             }).catch((error) => {
+                alert(' invalid credentials');
                 console.log(error);
             });
         }
