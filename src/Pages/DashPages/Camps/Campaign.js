@@ -3,8 +3,6 @@ import {Button} from 'react-materialize';
 import CampList from './CampList';
 import CreateCamp from './CreateCamp';
 import CampEdit from './CampEdit';
-import Auth from '../../../auth';
-let auth = new Auth();
 
 class Campaign extends Component{
 

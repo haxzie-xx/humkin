@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Input, Button} from 'react-materialize'
+import {Row, Input, Button} from 'react-materialize'
 import api from '../../../api.json';
 import axios from 'axios';
 import Auth from '../../../auth';

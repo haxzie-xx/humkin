@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Input, Button} from 'react-materialize'
+import {Row, Input, Button} from 'react-materialize'
 import api from '../../../api.json';
 import axios from 'axios';
 import Auth from '../../../auth';
@@ -46,7 +46,7 @@ class TransferUpdate extends Component{
 
      getStyles(){
 
-        if(parseInt(this.state.record.available) > parseInt(this.state.record.quantity)){
+        if(parseInt(this.state.record.available, 10) > parseInt(this.state.record.quantity, 10)){
             return vstyle;
         }else{
             return hstyle;

@@ -3,7 +3,6 @@ import { Row, Input, Icon} from 'react-materialize'
 import BBSearchItem from '../components/BBSearchItem'
 import axios from 'axios';
 import api from '../api.json';
-import Auth from '../auth';
 
 class BloodBank extends Component{
 

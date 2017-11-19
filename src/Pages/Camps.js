@@ -3,7 +3,6 @@ import {Row} from 'react-materialize';
 import CampCard from '../components/CampCard'
 import axios from 'axios';
 import api from '../api.json';
-import Auth from '../auth';
 
 class Camps extends Component{
 
