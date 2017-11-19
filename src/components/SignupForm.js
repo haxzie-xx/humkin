@@ -22,7 +22,6 @@ class SignupForm extends Component{
             bb_address : '',
             bb_pincode : ''
         }
-
         this.createAccount = this.createAccount.bind(this)
     }
 
