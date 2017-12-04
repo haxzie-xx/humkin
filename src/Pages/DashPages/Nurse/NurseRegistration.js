@@ -4,6 +4,9 @@ import api from '../../../api.json';
 import axios from 'axios';
 import validator from 'email-validator';
 import Auth from '../../../auth';
+import Notifications, {notify} from 'react-notify-toast';
+
+
 let auth = new Auth();
 
 const hstyle = {
@@ -68,7 +71,7 @@ class NurseRegistration extends Component{
             }).then((response) => {
                 if(response.status === 200){
                     this.setState({ newNurse : false, email : emailId })
-                    alert(' Email already Exists ');
+                    notify.show('Email already Exists','warning',1000);
                 }else{
                     this.setState({ newNurse : true, email : emailId });
                 }
@@ -94,6 +97,7 @@ class NurseRegistration extends Component{
     render(){
         return(
             <Row>
+                <Notifications/>
                 <Row>
                     <p className="card_title m0top">Nurse Registration</p>
                     <hr className="_small_line" />  

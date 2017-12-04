@@ -26,12 +26,29 @@ class CreateTransfer extends Component{
         super(props);
         this.state = {
             newHospital    : false,
-            bbid        : auth.getBbid(),
+            bbid           : auth.getBbid(),
             quantity       : '',
-            blood       : '',
-            hid       : ''
+            blood          : '',
+            hid            : '',
+            hospitals      : {},
+            isAvailable    : false
+
         }
     }
+
+    loadHospitalList(){
+        
+                axios.get(api.url+'/all_hospitals/'+this.state.bbid,{
+        
+                }).then((response) => {
+                    console.log(response);
+                     this.setState((prevState, props) => {
+                         return({ hospitals : response.data, isAvailable : true });
+                     });
+                }).catch((error) => {
+                    console.log(error);
+                });
+        }
 
     createTransfer(){
 
@@ -85,20 +102,23 @@ class CreateTransfer extends Component{
         }
     }
 
-    
+    getInputs(){
 
-    render(){
         return(
-            <Row>
-                <Row>
-                    <p className="card_title m0top">Transfer Record</p>
-                    <hr className="_small_line" />  
-                </Row>
-                <Input s={12} m={6} type="tel" label="Hospital ID" onChange={
-                    (e) => {
-                        this.checkHID(e.target.value);
-                    }
-                } validate/>
+            <div>
+                <Col s={6} m={6}>
+                <select className="custom-select" onChange={ (event) => {
+                    this.checkHID(event.target.value);
+                }}>
+                <option value="0">Choose Hospital</option>
+                {
+                            this.state.hospitals.map( (hospital, index) => {
+                                return <option value={hospital.hid} label={hospital.name} />
+                            })
+                        }
+        
+                </select>
+                </Col>
 
                 <div style={ this.getStyles() }>
                 <Input s={12} m={6} type="number" label="Blood Quantity (ML)" onChange={
@@ -123,7 +143,22 @@ class CreateTransfer extends Component{
                     <Button className="m10 waves-effect waves-light red accent-2" onClick={()=>{ this.createTransfer() }} >Create Record</Button>
                 </div>    
                 </div>
-        
+            </div>
+
+        )
+    }
+
+    
+
+    render(){
+        return(
+            <Row>
+                <Row>
+                    <p className="card_title m0top">Transfer Record</p>
+                    <hr className="_small_line" />  
+                </Row>
+                
+                { this.state.isAvailable ? this.getInputs() : this.loadHospitalList() }
         </Row>
 
         )

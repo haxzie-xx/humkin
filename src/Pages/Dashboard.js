@@ -87,10 +87,7 @@ class Dashboard extends Component{
                     <nav>
                     <div className="nav-wrapper fucia">
                     <a href="/" className="m20left main_logo">HumKin</a>
-                    <ul className="right hide-on-med-and-down">
-                        <li><a href="collapsible.html"><i className="material-icons">refresh</i></a></li>
-                        <li><a href="mobile.html"><i className="material-icons">more_vert</i></a></li>
-                    </ul>
+                    
                     </div>
                 </nav>
                 </div>

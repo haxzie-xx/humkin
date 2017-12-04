@@ -4,6 +4,8 @@ import DonationForm from './DonationForm';
 import DonationRecord from './DonationRecord';
 import DonationEdit from './DonationEdit';
 import Auth from '../../../auth';
+import Notifications, {notify} from 'react-notify-toast';
+
 let auth = new Auth();
 
 class Donation extends Component{
@@ -18,11 +20,11 @@ class Donation extends Component{
     }
     getCurrentView(){
         if(this.state.screenId === 1)
-            return < DonationForm onCloseEdit={ this.onCloseEdit }/>
+            return <DonationForm onCloseEdit={ this.onCloseEdit } notify={this.notifySuccess}/>
         else if(this.state.screenId === 2)
-            return <DonationEdit onCloseEdit={ this.onCloseEdit }/>
+            return <DonationEdit onCloseEdit={ this.onCloseEdit } notify={this.notifySuccess} />
 
-        return < DonationRecord onClickEdit={ this.openEdit }/>
+        return < DonationRecord onClickEdit={ this.openEdit } />
     }
 
     getButtonIcon(){
@@ -51,10 +53,15 @@ class Donation extends Component{
             return { screenId: 2, recordId: dId }
         });
     }
+
+    notifySuccess = (message)=>{
+        notify.show(message,'success', 1000);
+    }
     
     render(){
         return(
             <Row>
+                <Notifications/>
                 { this.getCurrentView() }
                 <Button floating className='red' large style={{bottom: '45px', right: '24px', position: 'fixed'}} onClick={ this.handleClick }><i className="material-icons">{ this.getButtonIcon() }</i></Button>
 

@@ -3,6 +3,9 @@ import {Row, Col, Button} from 'react-materialize';
 import axios from 'axios';
 import api from '../api.json'
 import {browserHistory} from 'react-router';
+import validator from 'validator';
+import Notifications, {notify} from 'react-notify-toast';
+
 
 class SignupForm extends Component{
 
@@ -48,6 +51,10 @@ class SignupForm extends Component{
                 console.log(response);
                 if(response.status === 200){
                     browserHistory.push('/login');
+                }else if(response.status === 201){
+                    notify.show("Manager Email already exists", "warning", 1000);
+                }else if( response.status === 202){
+                    notify.show("BloodBank name already exists", "warning", 1000);
                 }
               })
               .catch(function (error) {
@@ -72,20 +79,53 @@ class SignupForm extends Component{
             && !this.isEmpty(this.state.bb_city)
             
         ){
-            if(this.state.mgr_pass === this.state.mgr_repass)
-                return true;
-            else
+            if(!validator.isEmail(this.state.mgr_email)){
+                notify.show("Invalid Manager Email", "warning", 1000);
                 return false;
-        }else return false;
+            }else if(!validator.isAlpha(this.state.mgr_fname) && !validator.isAlpha(this.state.mgr_lname)){
+                notify.show("Invalid Manager Name", "warning", 1000);
+                return false;
+            }else if(!validator.equals(this.state.mgr_pass, this.state.mgr_repass)){
+                notify.show("Passwords doesn't match", "warning", 1000);
+                return false;
+            }else if(!validator.isNumeric(this.state.mgr_phone) && !this.state.mgr_phone.length === 10){
+                notify.show("Invalid Phone Number", "warning", 1000);
+                return false;
+            }else if(!this.test_name(this.state.bb_name)){
+                notify.show("Invalid BloodBank Name", "warning", 1000);
+                return false;
+            }else if(!validator.isEmail(this.state.bb_email)){
+                notify.show("Invalid BloodBank Email", "warning", 1000);
+                return false;
+            }else if(!validator.isNumeric(this.state.bb_phone) && !this.state.bb_phone.length === 10){
+                notify.show("Invalid Phone Number", "warning", 1000);
+                return false;
+            }else if(!validator.isNumeric(this.state.bb_pincode) && !this.state.bb_pincode.length <= 6){
+                notify.show("Invalid Pincode", "warning", 1000);
+                return false;
+            }else if(!validator.isAlpha(this.state.bb_city)){
+                notify.show("Invalid City", "warning", 1000);
+                return false;
+            }else{
+                return true;
+            }
+        }else {
+            notify.show("Please fill all the details", "warning", 1000);
+            return false;
+        }
     }
 
     isEmpty(x) {
         return (x.length === 0 || !x.trim())
     }
 
+    test_name(name){
+        return /^[a-zA-Z ]+$/.test(name);
+    }
     render(){
         return(
             <Row>
+                <Notifications/>
             <div className="row">
                 <Col s={12} m={6}>
                 <p className="card_title">Manager Details</p>

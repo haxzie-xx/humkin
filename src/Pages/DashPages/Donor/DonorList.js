@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table} from 'react-materialize';
+import {Table, Col, Pagination, Row} from 'react-materialize';
 import DonorListItem from './DonorListItem';
 import axios from 'axios';
 import api from '../../../api.json';
@@ -13,7 +13,14 @@ class DonorList extends Component{
         this.state = {
             donors : '',
             isAvailable : false,
-            bbid    : auth.getBbid()
+            bbid    : auth.getBbid(),
+            isPaginationInit : false,
+            countPages  : 0,
+            countPerPage: 8,
+            totalElements: 0,
+            currentPage  : 1,
+            startItem     : 0,
+            endItem        : 0
         }
     }
 
@@ -23,8 +30,9 @@ class DonorList extends Component{
 
     loadDonorList(){
 
-        axios.get(api.url+'/all_donors/'+this.state.bbid,{
-
+        axios.post(api.url+'/all_donors/'+this.state.bbid,{
+            'from' : this.state.startItem,
+            'to'   : this.state.currentPage*this.state.countPerPage
         }).then((response) => {
             console.log(response);
              this.setState((prevState, props) => {
@@ -61,9 +69,28 @@ class DonorList extends Component{
         }
     }
 
+    initpagination(){
+        
+                axios.get(api.url+'/donor_count/'+this.state.bbid,{
+
+                }).then((results)=>{
+                    let count = parseInt(results.data[0].count, 10);
+                    let startItem = 0;
+                    let countPages = Math.ceil(count/this.state.countPerPage);
+                    let endItem = parseInt(this.state.currentPage*this.state.countPerPage);
+                    this.setState({ totalElements : count,
+                                    startItem : startItem,
+                                    countPages: countPages,
+                                    endItem : endItem,
+                                    isPaginationInit: true});
+        
+                })
+            }
+
     render(){
         return(
             <div>
+                <Row>
             <Table className="highlight">
                 <thead>
                     <tr>
@@ -78,9 +105,24 @@ class DonorList extends Component{
                     </tr>
             </thead>
             <tbody>
-                { this.state.isAvailable ? this.prepareDonorList() : this.loadDonorList() }
+                { this.state.isPaginationInit ? this.state.isAvailable ? this.prepareDonorList() : this.loadDonorList() : this.initpagination()  }
             </tbody>
             </Table>
+            <div className="divider m10top"/>
+                <Col s={12} className="center p10">
+                        <Pagination items={this.state.countPages} activePage={this.state.currentPage} maxButtons={10} 
+                            onSelect={ (page)=>{
+                                let lastItem = parseInt(page)*this.state.countPerPage;
+                                let startItem = lastItem - this.state.countPerPage;
+                                this.setState({
+                                    lastItem : lastItem,
+                                    startItem : startItem,
+                                    currentPage : page,
+                                    isAvailable : false
+                                })
+                            }}/>
+                    </Col>
+                    </Row>
             </div>
         );
     }

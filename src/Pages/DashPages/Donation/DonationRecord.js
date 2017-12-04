@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Table} from 'react-materialize'
+import {Table, Col, Pagination, Row} from 'react-materialize'
 import DRecordItem from './DRecordItem'
 import axios from 'axios';
 import api from '../../../api.json';
@@ -14,7 +14,14 @@ class DonationRecord extends Component{
         this.state = {
             donations : '',
             isAvailable : false,
-            bbid        : auth.getBbid()
+            bbid        : auth.getBbid(),
+            isPaginationInit : false,
+            countPages  : 0,
+            countPerPage: 8,
+            totalElements: 0,
+            currentPage  : 1,
+            startItem     : 0,
+            endItem        : 0
         }
     }
 
@@ -26,10 +33,11 @@ class DonationRecord extends Component{
         console.log('Clicked from record List');
         this.props.onClickEdit(recordId);
     }
+    
     loadDonationList(){
-        
                 axios.post(api.url+'/donation_record/'+this.state.bbid,{
-        
+                        'from': this.state.startItem,
+                        'to' : this.state.currentPage * this.state.countPerPage
                 }).then((response) => {
                     console.log(response);
                      this.setState((prevState, props) => {
@@ -39,6 +47,25 @@ class DonationRecord extends Component{
                     console.log(error);
                 });
     }
+
+    initpagination(){
+
+        axios.get(api.url+'/record_details/'+this.state.bbid,{
+
+        }).then((results)=>{
+            let count = parseInt(results.data[0].count, 10);
+            let startItem = 0;
+            let countPages = Math.ceil(count/this.state.countPerPage);
+            let endItem = parseInt(this.state.currentPage*this.state.countPerPage);
+            this.setState({ totalElements : count,
+                            startItem : startItem,
+                            countPages: countPages,
+                            endItem : endItem,
+                            isPaginationInit: true});
+
+        })
+    }
+    
 
     prepareDonationList(){
         let rows = [];
@@ -68,6 +95,7 @@ class DonationRecord extends Component{
     render(){
         return(
             <div className="basic_card pad20 card-2 m20top">
+            <Row>
                 <Table className="stripped">
                     <thead>
                         <tr>
@@ -81,13 +109,27 @@ class DonationRecord extends Component{
                 </thead>
                 <tbody>
 
-                { this.state.isAvailable ? this.prepareDonationList() : this.loadDonationList() }
+                { this.state.isPaginationInit ? this.state.isAvailable ? this.prepareDonationList() : this.loadDonationList(): this.initpagination() }
                 </tbody>
                 </Table>
-            
+                <div className="divider m10top"/>
+                <Col s={12} className="center p10">
+                <Pagination items={this.state.countPages} activePage={this.state.currentPage} maxButtons={10} 
+                            onSelect={ (page)=>{
+                                let lastItem = parseInt(page)*this.state.countPerPage;
+                                let startItem = lastItem - this.state.countPerPage;
+                                this.setState({
+                                    lastItem : lastItem,
+                                    startItem : startItem,
+                                    currentPage : page,
+                                    isAvailable : false
+                                })
+                            }}/>
+                </Col>
+                </Row>
             </div>
         )
     }
 }
 
-export default DonationRecord
+export default DonationRecord;

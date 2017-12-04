@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Button} from 'react-materialize';
+import {Button, Toast} from 'react-materialize';
 import api from '.././api.json';
 import axios from 'axios';
 import {browserHistory} from 'react-router'
 import Auth from '../auth';
+import Notifications, {notify} from 'react-notify-toast';
+
 let auth = new Auth();
 
 const  style = {
@@ -18,14 +20,15 @@ class Login extends Component{
 
         this.state = {
             email : '',
-            password : ''
+            password : '',
+            err : false
         };
         this.handleClick = this.handleClick.bind(this);
     }
   handleClick(event){ 
 
     if(this.state.email && this.state.password){
-        if( this.state.email.length > 4 && this.state.password.length > 4 ){
+        if( this.state.email.length > 4 && this.state.password.length > 2 ){
             axios.post(api.url+'/login',{
                 email: this.state.email,
                 password: this.state.password
@@ -33,25 +36,26 @@ class Login extends Component{
                 
                 if(response.status === 200){
                     auth.setUser(response.data.bbid);
+                    notify.show("Welcome "+response.data.name, "success", 1000);
                     browserHistory.push('/dashboard');
                 }else{
-                    alert(' invalid credentials');
+                    notify.show("Invalid Email or Password", "error", 1000);
                 }
                 
             }).catch((error) => {
-                alert(' invalid credentials');
+                notify.show("No Internet Connection", "error", 1000);
                 console.log(error);
             });
         }
     }
   }
 
- 
 
     render(){
        return( 
         <div className="sexy_bg">
         <div className="row valign-wrapper">
+        <Notifications />
             <div className="my_card card-3 white">
                 <p className="card_title">Sign In</p>
                 <hr className="small_line" />
@@ -66,10 +70,11 @@ class Login extends Component{
                     <div className="input-field" >
                         <input id="password" type="password" className="validate"
                         onChange={ (event) => {
-                                this.setState({ password : event.target.value });
+                            this.setState({ password : event.target.value });
                             }}/>
                         <label for="password">Password</label>
                     </div>
+                    <div className="col s12 center"><p className="red-text">{this.state.err_msg}</p></div>
                     <div className="m20top col s6 m6">
                             <a href="/"><span className="red-text text-accent-2  m10top">Forgot passowrd?</span></a>
                     </div>

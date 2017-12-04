@@ -3,6 +3,8 @@ import {Row, Input, Button} from 'react-materialize'
 import api from '../../../api.json';
 import axios from 'axios';
 import Auth from '../../../auth';
+import Notifications, {notify} from 'react-notify-toast';
+
 let auth = new Auth();
 
 class EditManager extends Component{
@@ -59,15 +61,16 @@ class EditManager extends Component{
                 'phone'     : this.state.phone
             }).then((response)=>{
                 if(response.status === 200){
-                    alert('Details Updated Successfully');
+                    notify.show("Updated Successfully",'success',1000);
                 }else{
-                    alert(' Somethings wrong!');
+                    notify.show("Something is wrong",'warning',1000)
                 }
             }).catch((error)=>{
-                alert('Please check the details provided');
+                notify.show("Please check the details provided",'warning',1000)
             });
         }
      }
+
      changePassword(){
         if(this.state.bbid){
             if(this.state.newPass === this.state.rePass){
@@ -77,15 +80,17 @@ class EditManager extends Component{
                     'new_pass'     : this.state.newPass
                 }).then((response)=>{
                     if(response.status === 200){
-                        alert('Password changed Successfully');
-                    }else{
-                        alert(' Somethings wrong!');
+                        notify.show("Password changed successfully",'success',1000);
+                    }else if (response.status === 202){
+                        notify.show('Plese enter all the details','warning',1000);
+                    }else if(response.status === 201){
+                        notify.show('Specified password doesen\'t match old password','warning',1000);
                     }
                 }).catch((error)=>{
-                    alert('Please check the details provided');
+                    notify.show("Please check the details provided",'warning',1000);
                 });
             }else{
-                alert('Passwords doesnt match!')
+                notify.show('Passwords doesnt match','warning',1000);
             }
            
         }
@@ -150,6 +155,7 @@ class EditManager extends Component{
     render(){
         return(
             <Row>
+                <Notifications/>
                 <Row>
                     <p className="card_title m0top">Manager Details</p>
                     <hr className="_small_line" />  

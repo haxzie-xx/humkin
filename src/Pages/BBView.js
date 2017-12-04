@@ -11,6 +11,15 @@ const bloodType = [
     'O+', 'O-'
 ];
 
+
+const hstyle = {
+    'display' : 'none'
+}
+
+const vstyle = {
+    'display' : 'block'
+}
+
 class BBView extends Component{
 
 
@@ -22,9 +31,53 @@ class BBView extends Component{
             hid         : '',
             secret_pin  : '',
             quantity    : '',
-            blood       : ''
+            blood       : '',
+            hospitals      : {},
+            newHospital    : false,
+            isHospitalAvailable : false
+
         }
     }
+    
+    loadHospitalList(){
+        
+                axios.get(api.url+'/all_hospitals/'+this.state.bbid,{
+        
+                }).then((response) => {
+                    console.log(response);
+                     this.setState((prevState, props) => {
+                         return({ hospitals : response.data, isHospitalAvailable : true });
+                     });
+                }).catch((error) => {
+                    console.log(error);
+                });
+        }
+
+        checkHID(hid){
+            
+            if(hid){
+                axios.get(api.url+'/check_hid/'+hid, null ).then((response) => {
+                    if(response.status === 200){
+                        this.setState({ newHospital : true, hid : hid })
+                    }else{
+                        this.setState({ newHospital : false, hid : hid });
+                    }
+                }).catch((error) => {
+                    console.log(error);
+                });
+            }else{
+                this.setState({ newHospital : true, hid : hid });
+            }
+           
+        }
+    
+        getStyles(){
+            if(this.state.newHospital){
+                return vstyle;
+            }else{
+                return hstyle;
+            }
+        }
     
     createRequest(){
         if(this.state.hid && this.state.secret_pin && this.state.quantity && this.state.blood !== "caption"){
@@ -38,8 +91,9 @@ class BBView extends Component{
                 console.log(results);
                 if(results.status === 200){
                     alert('Request Sent !');
+                    this.setState({ isHospitalAvailable : false});
                 }else{
-                    alert('Error : invalid id and pin');
+                    alert('Error : invalid name and pin');
                 }
             }).catch((error)=>{
                 console.log(error);
@@ -153,6 +207,54 @@ class BBView extends Component{
             )
         }
     }
+
+
+    getHospitalInputs(){
+        return(
+            <div>
+                <select className="custom-select" onChange={ (event) => {
+                    this.checkHID(event.target.value);
+                }}>
+                <option value="0">Choose Hospital</option>
+                {
+                            this.state.hospitals.map( (hospital, index) => {
+                                return <option value={hospital.hid} label={hospital.name} />
+                            })
+                        }
+        
+                </select>
+                <div style={this.getStyles()}>
+             <Input s={12} type="tel" label="Secret PIN" 
+                                    onChange={
+                                        (event) =>{
+                                            this.setState({ secret_pin : event.target.value});
+                                        }
+                                    } validate/>
+                                <Input s={12} type="number" label="Quantity (ML)" 
+                                    onChange={
+                                        (event) =>{
+                                            this.setState({ quantity : event.target.value });
+                                        }
+                                    } validate/>
+
+                                <select className="custom-select" onChange={ (event) => {
+                                        this.setState({ blood : event.target.value });
+                                    }}>
+                                    <option value="caption">Blood Type</option>
+                                    {
+                                                bloodType.map( (btype, index) => {
+                                                    return <option value={btype} label={btype} />
+                                                })
+                                            }
+                    
+                                </select>
+                                <div className="col s12 m20top pad10 center">
+                                    <Button className="m10 waves-effect waves-light red accent-2" onClick={ (event) => { this.createRequest() }}>Send Request</Button>
+                                </div> 
+                                </div>  
+            </div>
+        )
+    }
     render(){
         return(
             <div>
@@ -179,39 +281,8 @@ class BBView extends Component{
                                 </Row>
                                 <p className="grey-text" >Hospital must be registered with this bloodbank to send request</p>
                                 <Row>
-                                <Input s={12} type="tel" label="Hospital ID" 
-                                    onChange={
-                                        (event) =>{
-                                            this.setState({ hid : event.target.value});
-                                        }
-                                    } validate/>
-                                <Input s={12} type="tel" label="Secret PIN" 
-                                    onChange={
-                                        (event) =>{
-                                            this.setState({ secret_pin : event.target.value});
-                                        }
-                                    } validate/>
-                                <Input s={12} type="number" label="Quantity (ML)" 
-                                    onChange={
-                                        (event) =>{
-                                            this.setState({ quantity : event.target.value });
-                                        }
-                                    } validate/>
-
-                                <select className="custom-select" onChange={ (event) => {
-                                        this.setState({ blood : event.target.value });
-                                    }}>
-                                    <option value="caption">Blood Type</option>
-                                    {
-                                                bloodType.map( (btype, index) => {
-                                                    return <option value={btype} label={btype} />
-                                                })
-                                            }
-                    
-                                </select>
-                                <div className="col s12 m20top pad10 center">
-                                    <Button className="m10 waves-effect waves-light red accent-2" onClick={ (event) => { this.createRequest() }}>Send Request</Button>
-                                </div>
+                                
+                                { this.state.isHospitalAvailable ? this.getHospitalInputs() : this.loadHospitalList() }
                                 </Row>
                         </div>
                     </Col>
