@@ -91,7 +91,7 @@ class BBView extends Component{
                 console.log(results);
                 if(results.status === 200){
                     alert('Request Sent !');
-                    this.setState({ isHospitalAvailable : false});
+                    this.setState({ isHospitalAvailable : false})   
                 }else{
                     alert('Error : invalid name and pin');
                 }
