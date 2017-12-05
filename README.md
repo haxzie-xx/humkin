@@ -23,5 +23,14 @@ for production build
 npm run build
 ```
 
+### Update the api.json
+update the api.json file to your api URL
+`/src/api.json`
+```json
+{
+    "url" : "http://localhost:8080"
+}
+```
+
 ## Server
 Goto Node/Express server for [HumKin](https://github.com/haxzie/humkin)
