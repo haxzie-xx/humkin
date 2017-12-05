@@ -80,7 +80,7 @@ class TransferUpdate extends Component{
                 <Input s={12} m={6} type="text" label="Blood Type" 
                     defaultValue={ this.state.record.blood} disabled/>
                 <Input s={12} m={6} type="text" label="Available" 
-                    defaultValue={ this.state.record.available} disabled/>
+                    defaultValue={ this.state.record.available > 0 ? this.state.record.available : 'Currently Unavailable'} disabled/>
                 <Row>
                     <div className="col s12 m0 pad10 center" style={ this.getActionStyles() }>
                         <Button className="m10 waves-effect waves-light red accent-2" onClick={ () => { this.deleteRecord() }}>Delete</Button>

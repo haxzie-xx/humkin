@@ -81,7 +81,7 @@ class DonationForm extends Component{
                      this.closeRegistration()
                  }
              }).catch((error) => {
-                 alert('error');
+                 alert('Donor already registered');
              });
          }
  
@@ -104,8 +104,12 @@ class DonationForm extends Component{
     }
 
     getStyles(){
-        if(this.state.newDonor){
-            return vstyle;
+        if(this.state.newDonor ){
+            if( this.state.adhaar.length > 3){
+                return vstyle;
+            }else{
+                return hstyle;
+            }
         }else{
             return hstyle;
         }
